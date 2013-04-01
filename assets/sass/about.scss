@@ -1,0 +1,27 @@
+@import "base";
+
+section#about-quote {
+    @include grid-row;
+
+    article {
+        @include grid-column(10, $center:true);
+        @include panel;
+    }
+}
+
+section#about-content {
+    @include grid-row;
+
+    article#history {
+        @include grid-column(4, $offset:2, $float:left);
+
+        img {
+            float: left;
+            margin-right: 1.2em;
+        }
+    }
+
+    article#now {
+        @include grid-column(4, $float:left);
+    }
+}

@@ -1,0 +1,55 @@
+@import "base2";
+
+#news {
+    @include grid-row;
+
+    .news-item {
+        @include grid-column(4, $float:left);
+
+        img {
+            float: left;
+            margin-right: 1.2em;
+        }
+    }
+}
+
+#blog {
+    @include grid-row;
+
+    .blog-post {
+        @include grid-column(4, $float:left);
+    }
+}
+
+
+#store-events {
+    @include grid-row;
+
+    #store-highlight {
+        @include grid-column(6, $float:left);
+
+        .store-item {
+            @include grid-row($behavior:nest);
+
+            img {
+                @include grid-column(5, $float:left);
+            }
+
+            .prod-info {
+                @include grid-column(7, $float:left);
+            }
+        }
+
+        .buy-now {
+            @include button($bg:$success-color);
+        }
+    }
+
+    #upcoming-events {
+        @include grid-column(6, $float:left);
+
+        .buy-tix {
+            @include button($bg:$success-color);
+        }
+    }
+}

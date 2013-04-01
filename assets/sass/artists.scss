@@ -1,0 +1,22 @@
+@import "base";
+
+section#artists-body {
+    @include grid-row;
+
+    article#artists {
+        section {
+            .content {
+                @include grid-row($behavior:nest);
+
+                figure {
+                    @include grid-column(3, $float:left);
+
+                    .tour-label {
+                        @include label($radius:6px, $bg:#FFDB66);
+                        margin-left: 2em;
+                    }
+                }
+            }
+        }
+    }
+}

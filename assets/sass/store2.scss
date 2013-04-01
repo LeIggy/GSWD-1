@@ -1,0 +1,110 @@
+@import "base2";
+
+section#store-content {
+    @include grid-row;
+
+    article#store-body {
+        @include grid-column(9, $float:left);
+
+        #store-nav {
+            @include grid-row($behavior:nest);
+
+            .store-title {
+                @include grid-column(2, $float:left);
+
+                font-size: 2em;
+                margin-top: .2em;
+                margin-bottom: 0em;
+                text-align: left;
+                text-transform: uppercase;
+            }
+
+            form {
+                @include grid-column(10);
+                padding-right: 0;
+
+                input[type=search] {
+                    float: right;
+                    margin-top: 1em;
+                }
+            }
+
+            nav {
+                ul {
+                    @include button-group-container;
+
+                    .store-cat {
+                        @include button($bg:$secondary-color);
+                        @include inset-shadow;
+                        @include single-transition;
+                    }
+
+                    li {
+                        @include button-group-style(true, $float:right);
+                    }
+                }
+            }
+
+            ul.store-breadcrumbs {
+                @include crumb-container;
+
+                li {
+                    @include crumbs;
+                }
+            }
+        }
+
+        #store-items {
+            article {
+                @include grid-row($behavior:nest);
+
+                figure.store-item {
+                    @include grid-column(4, $float:left);
+
+                    .product-img {
+                        margin-bottom: 1.2em;
+                    }
+
+                    figcaption {
+                        @include panel;
+
+                        .add-to-cart {
+                            @include button;
+                            @include inset-shadow;
+                            @include single-transition;
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    article#store-sidebar {
+        @include grid-column(3, $float:left);
+
+        .shopping-cart {
+            @include panel;
+
+            .check-out {
+                @include button($bg:$success-color);
+                @include inset-shadow;
+                @include single-transition;
+
+            }
+        }
+        figure {
+            .ad-img {
+                float: left;
+                margin-right: 1.2em;
+            }
+
+            .buy-now {
+                @include button;
+                @include inset-shadow;
+                @include single-transition;
+            }
+        }
+    }
+}

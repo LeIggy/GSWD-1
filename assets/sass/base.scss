@@ -1,0 +1,63 @@
+@import "app";
+
+#site-header {
+    @include grid-row;
+
+    #logo {
+        @include grid-column(4, $float:left);
+        padding-left: 0;
+    }
+
+    ul.nav-list {
+        @include grid-column(8, $float:right);
+        @include button-group-container;
+        padding-right: 0;
+
+        a.nav-item {
+            @include button($bg:$secondary-color, $full-width:true);
+            @include inset-shadow;
+            @include single-transition;
+        }
+
+        li {
+            @include button-group-style($radius:true, $even:6);
+        }
+
+        &:last-child a.nav-item {
+            float: right;
+        }
+
+    }
+
+    nav.site-nav {
+        margin-top: 1.5em;
+    }
+}
+
+#site-footer {
+    @include grid-row;
+
+    #about-us {
+        @include grid-column(3, $float:left);
+    }
+
+    #us-elsewhere {
+        @include grid-column(3, $float:left);
+
+        .web-links {
+            @include inline-list;
+        }
+    }
+
+    #friends {
+        @include grid-column(3, $float:left);
+
+        .friend-list {
+            @include inline-list;
+        }
+    }
+
+    #company-info {
+        @include grid-column(3, $float:right);
+    }
+}
