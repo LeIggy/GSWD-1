@@ -10,7 +10,6 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
     ("Wellington Cordeiro", "willy1234x1@gmail.com"),
 )
 
@@ -117,7 +116,9 @@ DJANGO_APPS = (
     'django.contrib.admin',
 )
 
-THIRD_PARTY_APPS = ()
+THIRD_PARTY_APPS = (
+    'south',
+)
 
 LOCAL_APPS = ()
 
