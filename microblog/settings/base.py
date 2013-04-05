@@ -9,6 +9,8 @@ root = lambda * x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
+INTERNAL_IPS = ('0.0.0.0',)
+
 ADMINS = (
     ("Wellington Cordeiro", "willy1234x1@gmail.com"),
 )
@@ -95,6 +97,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'microblog.urls'
@@ -118,6 +121,7 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'south',
+    'debug_toolbar',
 )
 
 LOCAL_APPS = (
