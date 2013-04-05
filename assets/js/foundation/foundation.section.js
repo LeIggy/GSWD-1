@@ -6,7 +6,7 @@
   Foundation.libs.section = {
     name: 'section',
 
-    version : '4.0.8',
+    version : '4.1.1',
 
     settings : {
       deep_linking: false,
@@ -16,9 +16,7 @@
 
     init : function (scope, method, options) {
       var self = this;
-
-      this.scope = scope || this.scope;
-      Foundation.inherit(this, 'throttle data_options');
+      Foundation.inherit(this, 'throttle data_options position_right offset_right');
 
       if (typeof method != 'string') {
         this.set_active_from_hash();
@@ -55,7 +53,7 @@
       $(document)
         .on('click.fndtn.section', function (e) {
           if ($(e.target).closest('.title').length < 1) {
-            $('[data-section].vertical-nav, [data-section].horizontal-nav')
+            $('[data-section="vertical-nav"], [data-section="horizontal-nav"]')
               .find('section, .section')
               .removeClass('active')
               .attr('style', '');
@@ -167,15 +165,19 @@
     },
 
     is_vertical : function (el) {
-      return el.hasClass('vertical-nav');
+      return /vertical-nav/i.test(el.data('section'));
     },
 
     is_horizontal : function (el) {
-      return el.hasClass('horizontal-nav');
+      return /horizontal-nav/i.test(el.data('section'));
     },
 
     is_accordion : function (el) {
-      return el.hasClass('accordion');
+      return /accordion/i.test(el.data('section'));
+    },
+
+    is_tabs : function (el) {
+      return /tabs/i.test(el.data('section'));
     },
 
     set_active_from_hash : function () {
@@ -210,7 +212,11 @@
 
       } else {
         titles.each(function () {
-          $(this).css('left', previous_width);
+          if (!self.rtl) {
+            $(this).css('left', previous_width);
+          } else {
+            $(this).css('right', previous_width);
+          }
           previous_width += self.outerWidth($(this));
         });
       }
@@ -228,8 +234,11 @@
         section.find('section, .section').each(function () {
           var title = $(this).find('.title'),
               content = $(this).find('.content');
-
-          content.css({left: title.position().left - 1, top: self.outerHeight(title) - 2});
+          if (!self.rtl) {
+            content.css({left: title.position().left - 1, top: self.outerHeight(title) - 2});
+          } else {
+            content.css({right: self.position_right(title) + 1, top: self.outerHeight(title) - 2});
+          }
         });
 
         // temporary work around for Zepto outerheight calculation issues.
@@ -242,9 +251,20 @@
 
     },
 
+    position_right : function (el) {
+      var section = el.closest('[data-section]'),
+          section_width = el.closest('[data-section]').width(),
+          offset = section.find('.title').length;
+      return (section_width - el.position().left - el.width() * (el.index() + 1) - offset);
+    },
+
+    reflow : function () {
+      $('[data-section]').trigger('resize');
+    },
+
     small : function (el) {
       var settings = $.extend({}, this.settings, this.data_options(el));
-      if (el && el.hasClass('tabs')) {
+      if (this.is_tabs(el)) {
         return false;
       }
       if (el && this.is_accordion(el)) {

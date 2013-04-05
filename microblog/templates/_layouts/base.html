@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block page_title %}{% endblock page_title %}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/foundation.min.css">
 </head>
 <body>
-    <h1>Welcome to my site!</h1>
-    {% block page_content %}{% endblock page_content %}
+    <div class="row">
+        <h1>Welcome to my site!</h1>
+        {% block page_content %}{% endblock page_content %}
+    </div>
 </body
 </html>
