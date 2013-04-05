@@ -9,7 +9,7 @@ root = lambda * x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-INTERNAL_IPS = ('0.0.0.0',)
+INTERNAL_IPS = ('127.0.0.1',)
 
 ADMINS = (
     ("Wellington Cordeiro", "willy1234x1@gmail.com"),
